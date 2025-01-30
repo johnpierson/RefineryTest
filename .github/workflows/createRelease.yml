@@ -27,4 +27,4 @@ jobs:
           prerelease: false
           files: |
             Samples.7z
-            .\Samples\*.7z
+            ./Samples/*.7z
