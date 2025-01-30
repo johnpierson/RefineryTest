@@ -1,25 +1,21 @@
----
-name: "tagged-release"
-
 on:
   push:
+    # Sequence of patterns matched against refs/tags
     tags:
-      - "v*"
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Upload Release Asset
 
 jobs:
-  tagged-release:
-    name: "Tagged Release"
-    runs-on: "ubuntu-latest"
-
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
     steps:
-      # ...
-      - name: "Build & test"
-        run: |
-          echo "done!"
-
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Draft Release
+        uses: meeDamian/github-release@2.0
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Generative Design Primer Sample Files
+          gzip: folders
+          files: >
             .\Samples\*.7z
