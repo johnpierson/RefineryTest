@@ -26,3 +26,14 @@ jobs:
           prerelease: false
           files: |
             Samples.7z
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@v1
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: |
+              ./Samples.7z
+          asset_name: |
+              /Samples.7z
+          asset_content_type: application/zip
