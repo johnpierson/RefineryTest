@@ -13,12 +13,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: 7Zip Files
+        uses: edgarrc/action-7z@v1
+        with:
+          args: 7z a -t7z -mx=9 Samples.7z ./Samples/
       - name: Create Release
         id: create_release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
           title: "Generative Design Primer Samples"
           prerelease: false
           files: |
-            .\Samples\*.7z            
+            Samples.7z
