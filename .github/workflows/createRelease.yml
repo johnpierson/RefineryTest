@@ -13,9 +13,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build Module
-        shell: pwsh
-        run: ./Samples/ReleasePerRevitVersion.ps1 -Task ModuleBuild
       - name: Create Release
         id: create_release
         uses: "marvinpinto/action-automatic-releases@latest"
