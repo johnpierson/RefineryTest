@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Build Module
         shell: pwsh
-        run: Samples/ZipForRelease.ps1
+        run: /Samples/ZipForRelease.ps1
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Create Release
@@ -25,4 +25,4 @@ jobs:
           title: "Generative Design Primer Samples"
           prerelease: false
           files: |
-            Release/*.zip
+            ./Release/*.zip
