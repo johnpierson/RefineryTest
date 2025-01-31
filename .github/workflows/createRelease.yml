@@ -11,6 +11,9 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+      - name: Build Module
+        shell: pwsh
+        run: ./Samples/ZipForRelease.ps1
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Create Release
@@ -22,4 +25,4 @@ jobs:
           title: "Generative Design Primer Samples"
           prerelease: false
           files: |
-            ./Samples/*.7z
+            ./Release/*.zip
