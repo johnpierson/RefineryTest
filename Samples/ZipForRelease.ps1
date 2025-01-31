@@ -41,7 +41,7 @@ Foreach ($revitDir in $revitDirs)
            $sampleFiles = Get-ChildItem -Path $dir/
            Foreach($sampleFile in $sampleFiles)
            {
-               Compress-Archive -Path $dir/$sampleFile -Update -DestinationPath $releasePath/$sampleName
+               Compress-Archive -Path $sampleFile -Update -DestinationPath $releasePath/$sampleName
            }
           
       }
