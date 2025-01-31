@@ -32,7 +32,7 @@ Foreach ($revitDir in $revitDirs)
       Foreach($dir in $dirs)
       {
            #first revit versions
-           Compress-Archive -Path $mypath/$revitDir/$dir -Update -DestinationPath $releasePath/$name
+           Compress-Archive -Path $dir -Update -DestinationPath $releasePath/$name
 
            #individual sample names
            $sampleName = $revitDir.name + "_" + $dir.name -replace"Revit"
