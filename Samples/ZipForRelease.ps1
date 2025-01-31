@@ -1,13 +1,15 @@
 $samplesPath = $PSScriptRoot
 $repoBasePath = Split-Path -Path $samplesPath -Parent
-
-#remove release folder (if exist) and create it again
 $releasePath = [IO.Path]::Combine($repoBasePath, 'Release')
 
 
-Write-Output -InputObject $releasePath
+# delete release folder if it exists so we can recreate it
+if (Test-Path -Path $releasePath) {
+    # Delete the directory if it exists
+    Remove-Item -Path $releasePath -Recurse -Force
+}
 
-Remove-Item -LiteralPath $releasePath -Force -Recurse
+
 $releaseFolder = New-Item -ItemType Directory -Force -Path $releasePath
 
 
@@ -36,7 +38,11 @@ Foreach ($revitDir in $revitDirs)
            $sampleName = $revitDir.name + "_" + $dir.name -replace"Revit"
 
            #now each sample
-           Compress-Archive -Path $mypath\$revitDir\$dir\ -Update -DestinationPath $releasePath\$sampleName
-
+           $sampleFiles = Get-ChildItem -Path $mypath\$revitDir\$dir\
+           Foreach($sampleFile in $sampleFiles)
+           {
+               Compress-Archive -Path $mypath\$revitDir\$dir\$sampleFile -Update -DestinationPath $releasePath\$sampleName
+           }
+          
       }
 }
