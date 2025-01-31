@@ -24,24 +24,24 @@ Foreach ($revitDir in $revitDirs)
       $name = $revitDir.name
 
       #sample subfolders
-      $dirs = Get-ChildItem -Path $mypath\$revitDir -Directory
+      $dirs = Get-ChildItem -Path $mypath/$revitDir -Directory
 
-      #Compress-Archive -Path $mypath\$revitDir -DestinationPath $mypath\$name
+      #Compress-Archive -Path $mypath/$revitDir -DestinationPath $mypath/$name
 
       #iterate through subfolders
       Foreach($dir in $dirs)
       {
            #first revit versions
-           Compress-Archive -Path $mypath\$revitDir\$dir -Update -DestinationPath $releasePath\$name
+           Compress-Archive -Path $mypath/$revitDir/$dir -Update -DestinationPath $releasePath/$name
 
            #individual sample names
            $sampleName = $revitDir.name + "_" + $dir.name -replace"Revit"
 
            #now each sample
-           $sampleFiles = Get-ChildItem -Path $mypath\$revitDir\$dir\
+           $sampleFiles = Get-ChildItem -Path $mypath/$revitDir/$dir/
            Foreach($sampleFile in $sampleFiles)
            {
-               Compress-Archive -Path $mypath\$revitDir\$dir\$sampleFile -Update -DestinationPath $releasePath\$sampleName
+               Compress-Archive -Path $mypath/$revitDir/$dir/$sampleFile -Update -DestinationPath $releasePath/$sampleName
            }
           
       }
