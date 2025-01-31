@@ -1,9 +1,8 @@
 # Controls when the workflow will run
 on:
-   pull_request_target:
-    branches: [master;main]
-    types: [closed]
-
+  pull_request:
+  push:
+    branches: [main,master]
 name: Release Sample Files
 
 jobs:
